@@ -23,11 +23,11 @@ Shell script which install the latest [BunsenLabs](https://www.bunsenlabs.org) o
 * :heavy_check_mark: Boot on any computer
 * :heavy_check_mark: Boot in a minute **+** :heavy_check_mark: Boot in 1Go RAM
 * :heavy_check_mark: Fit on a 4Go USB key ( ~ 1Go / 1Go20 for the system partition)
-* :heavy_check_mark: VERY stable => _[Based on **Debian stable**](https://wiki.debian.org/Derivatives/Census/BunsenLabs)_
+* :heavy_check_mark: VERY stable => _[Based on Debian stable](https://wiki.debian.org/Derivatives/Census/BunsenLabs)_
 * :heavy_check_mark: With GUI => _[OpenBox](http://openbox.org/wiki/Main_Page)_
 * :heavy_check_mark: Create with debug software available (gparted, ..)
 * :heavy_check_mark: Very wide packages availables => _Debian apt-get_
-* :heavy_check_mark: Could install the OS if needed -> Persistence doesn't removed the ability to use the key as an install key
+* :heavy_check_mark: Could install the OS if needed => Persistence doesn't removed the ability to use the key as an install key
 
 ## Getting Started
 
@@ -38,7 +38,7 @@ That script only work for [arch based distros](https://wiki.archlinux.org/index.
 
 ### Installing
 
-While running of the script, packages (listed in the _Built With_ part) will automatically installed if needed.
+While running of the script, packages (listed in the _Built With_ part) will automatically be installed if needed.
 
 - For **Arch based distro** : The Package manager _pacman_ and _[yay](https://aur.archlinux.org/packages/yay/)_ will be used
 
