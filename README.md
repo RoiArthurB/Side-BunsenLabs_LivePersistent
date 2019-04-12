@@ -40,7 +40,7 @@ That script only work for [arch based distros](https://wiki.archlinux.org/index.
 
 While running of the script, packages (listed in the _Built With_ part) will automatically installed if needed.
 
-- For **Arch based distro** : The Package manager _pacman_ and _yay_ will be used
+- For **Arch based distro** : The Package manager _pacman_ and _[yay](https://aur.archlinux.org/packages/yay/)_ will be used
 
 - For **Debian based distro** : The Package manager _apt-get_ will be used
 
