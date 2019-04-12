@@ -34,18 +34,15 @@ if [[ -f /etc/arch-release ]];then
 		# run yay command with user su
 		su $SUDO_USER -c "yay -S mbr --noconfirm --needed"
 	fi
-
 else
 	# Debian / Ubuntu
 	if [[ -f /etc/debian_version ]];then
 		apt-get install --no-install-recommends -y mbr syslinux p7zip
 	else
-
 		echo "This script doesn't support your distro, sorry my friend :/"
 		echo "I've only prepare it for pacman/yay and apt-get !"
 		exit 1
 	fi
-
 fi
 
 ######################
@@ -106,7 +103,6 @@ fi
 ######################
 #	FORMAT DISK
 ######################
-
 echo ========================================
 echo Format USB :
 
@@ -131,13 +127,13 @@ echo $isoSize
 # document what we're doing in-line with the actual commands
 # Note that a blank line (commented as "defualt" will send a empty
 # line terminated with a newline to take the fdisk default.
-sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | sudo fdisk /dev/sdc
+sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/$devVar
   o # clear the in memory partition table
   n # new partition
   p # primary partition
   1 # partition number 1
     # default - start at beginning of disk 
-  +2521908 # 100 MB boot parttion
+  +$isoSize # 100 MB boot parttion
   t # change type partition
   b # change to WIN95 fat32
   a # set "boot" flag on partition
@@ -162,7 +158,6 @@ mkfs.ext4 /dev/$devVar$two -L 'persistence' -F
 ######################
 #	Set Up the Master Boot Record
 ######################
-
 echo ========================================
 echo Set up the master boot record :
 
@@ -172,7 +167,6 @@ echo Set up the master boot record :
 syslinux -i /dev/$devVar$one
 
 # Extract the ISO to the First Partition
-
 echo ========================================
 echo Extraction the ISO :
 
@@ -186,7 +180,6 @@ cd mnt
 ######################
 #	Set Up  Persistence
 ######################
-
 echo ========================================
 echo Set up persistence :
 
@@ -212,7 +205,6 @@ syslinux -i /dev/$devVar$one -d /syslinux
 ######################
 #	Cleaning
 ######################
-
 echo ========================================
 echo Cleaning :
 
@@ -223,10 +215,10 @@ rm -fr /tmp/toto1233
 ######################
 #	End
 ######################
-
 echo ========================================
 echo "That's it! :)"
-echo "Reboot to your USB drive and choose a Live session. You'll see messages about your drives not mounting to /live/persistence, that's normal. The first time you boot, you'll see a brief cron job running, that's the persistence being configured. You should be automatically logged into the session. "
+echo "Reboot to your USB drive and choose a Live session. You'll see messages about your drives not mounting to /live/persistence, that's normal."
+echo "The first time you'll boot, you'll see a brief cron job running, that's the persistence being configured. You should be automatically logged into the session. "
 echo "If you want to log out, the username is _user_ and the password is _live_. "
-
-echo '\n\n Enjoy your USB Key :D'
+echo $'\n'
+echo Enjoy your USB Key :D
