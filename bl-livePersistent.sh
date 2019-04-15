@@ -16,14 +16,14 @@ fi
 ######################
 
 # Arch / Manjaro
-if [[ -f /etc/arch-release ]];then
+if [ -f /etc/arch-release ];then
 
 	pacman -S syslinux p7zip mtools --noconfirm --needed
 
-	if [[ ! -f /sbin/install-mbr ]];then
+	if [ ! -f /sbin/install-mbr ];then
 
 		# Check if yay installed
-		if ! type "yay" > /dev/null; then
+		if [ ! type "yay" > /dev/null ];then
 			echo "This script use yay to install AUR package"
 			echo "You can install yay, or install the mbr package from AUR before rerun this script"
 			exit 1
@@ -36,7 +36,8 @@ if [[ -f /etc/arch-release ]];then
 	fi
 else
 	# Debian / Ubuntu
-	if [[ -f /etc/debian_version ]];then
+	if [ -f /etc/debian_version ];then
+		apt-get update
 		apt-get install --no-install-recommends -y mbr syslinux p7zip
 	else
 		echo "This script doesn't support your distro, sorry my friend :/"
@@ -60,13 +61,13 @@ read devVar
 echo $'\n'Working on \/dev\/$devVar$'\n'
 
 # move to perso workspace
-if [[ ! -d /tmp/toto1233 ]];then
+if [ ! -d /tmp/toto1233 ];then
 	mkdir /tmp/toto1233
 fi
 cd /tmp/toto1233
 
 # Download iso
-if [[ ! -f ./CurrentRelease.txt ]];then
+if [ ! -f ./CurrentRelease.txt ];then
 	wget https://ddl.bunsenlabs.org/ddl/CurrentRelease.txt
 fi
 blVersion=$(head -n 1 ./CurrentRelease.txt)
@@ -95,7 +96,7 @@ esac
 
 echo $'\n'Downloading $blVersion-$archi.iso$'\n'
 
-if [[ ! -f ./$blVersion-$archi.iso ]];then
+if [ ! -f ./$blVersion-$archi.iso ];then
 	wget https://ddl.bunsenlabs.org/ddl/$blVersion-$archi.iso
 	chmod 777 ./$blVersion-$archi.iso 
 fi
@@ -170,7 +171,7 @@ syslinux -i /dev/$devVar$one
 echo ========================================
 echo Extraction the ISO :
 
-if [[ ! -d /tmp/toto1233/mnt ]];then
+if [ ! -d /tmp/toto1233/mnt ];then
 	mkdir mnt
 fi
 mount /dev/$devVar$one mnt
