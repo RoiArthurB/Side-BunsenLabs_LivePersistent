@@ -203,6 +203,10 @@ echo / union | tee persistence.conf
 # Final command
 syslinux -i /dev/$devVar$one -d /syslinux
 
+# Unroot persistence Partition
+cd ../
+chown $SUDO_USER ./mnt
+
 ######################
 #	Cleaning
 ######################
