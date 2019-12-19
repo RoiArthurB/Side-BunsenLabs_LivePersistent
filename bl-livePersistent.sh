@@ -76,7 +76,7 @@ echo $'\n============================\n'
 echo What version of $blVersion do you want?
 echo 1 = amd64
 echo 2 = i386
-echo 3 = i386, no PAE
+echo 3 = CD i386
 read archiIndex
 
 case "$archiIndex" in
@@ -87,17 +87,17 @@ case "$archiIndex" in
     archi=i386
     ;;
 "3")
-    archi=i386-cd
+    archi=cd-i386
     ;;
 *)
     archi=amd64
     ;;
 esac
 
-echo $'\n'Downloading $blVersion-$archi.iso$'\n'
+echo $'\n'Downloading $blVersion-$archi.hybrid.iso$'\n'
 
 if [ ! -f ./$blVersion-$archi.iso ];then
-	wget https://ddl.bunsenlabs.org/ddl/$blVersion-$archi.iso
+	wget https://ddl.bunsenlabs.org/ddl/$blVersion-$archi.hybrid.iso
 	chmod 777 ./$blVersion-$archi.iso 
 fi
 
